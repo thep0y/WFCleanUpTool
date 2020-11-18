@@ -1,0 +1,14 @@
+#content {
+    margin: 10px;
+}
+
+.choose-folder-block {
+    display: inline;
+    float: left;
+    width: 650px;
+}
+
+#chosePath {
+    display: inline;
+    float: right;
+}

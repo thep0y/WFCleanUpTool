@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/layui/css/layui.css') }}" media="all">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/index.css') }}">
+</head>
+
+<body>
+    <div id="content">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="choose-folder-block">
+                    <input type="text" id="wechat-files-folder" name="wechat-files-folder" required=""
+                        lay-verify="required" placeholder="请输入或选择文件夹" autocomplete="off" class="layui-input">
+                </div>
+                <button type="button" class="layui-btn" id="chosePath" onclick="choosePath()">
+                    <i class="layui-icon">&#xe655;</i>选择文件夹
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="{{ url_for('static', path='/layui/layui.all.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', path='/js/index.js') }}"></script>
+
+</html>
