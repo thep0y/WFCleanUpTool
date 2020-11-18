@@ -12,3 +12,9 @@
     display: inline;
     float: right;
 }
+
+.logo {
+    display: inline;
+    height: 20px;
+    margin-right: 5px;
+}

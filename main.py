@@ -24,7 +24,11 @@ def server_start(port: int = 8001):
 
 def create_window():
     api = Api()
-    webview.create_window("微信文件清理工具", "http://127.0.0.1:8001/", js_api=api)
+    webview.create_window("微信文件清理工具",
+                          "http://127.0.0.1:8001/",
+                          js_api=api,
+                          height=400,
+                          resizable=False)
 
     webview.start(gui='qt', debug=True)
 
