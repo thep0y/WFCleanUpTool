@@ -1,7 +1,8 @@
 import os
 import re
+import shutil
 
-from typing import Optional, Tuple, Dict
+from typing import Optional, Tuple, Dict, List
 
 
 def find_wx_username_and_logo(wx_files_folder: str, wx_id: str) -> Tuple[Optional[str], Optional[str]]:
@@ -50,6 +51,22 @@ def folder_size(folder: str) -> float:
         size += sum([os.path.getsize(os.path.join(root, name)) for name in files])
     size = size / (1024 * 1024)  # m
     return round(size, 3)  # 保留三位小数，以兆为单位返回
+
+
+def delete_files(wx_files_folder: str, wx_id: str, folders: List[str]):
+    for folder in folders:
+        if folder == 'Msg':
+            for file in os.listdir(os.path.join(wx_files_folder, wx_id, 'Msg')):
+                if os.path.isdir(file):
+                    shutil.rmtree(file)
+                else:
+                    os.remove(file)
+        else:
+            for file in os.listdir(os.path.join(wx_files_folder, wx_id, 'FileStorage', folder)):
+                if os.path.isdir(file):
+                    shutil.rmtree(file)
+                else:
+                    os.remove(file)
 
 
 if __name__ == "__main__":

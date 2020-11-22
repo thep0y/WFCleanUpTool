@@ -25,7 +25,7 @@ function choosePath() {
                 folderInput.val(response.path)
 
                 let funcs = $('#functions')
-                let html = '<form class="layui-form" action="">' +
+                let html = '<form class="layui-form" id="clean" action>' +
                     '<div class="layui-form-item">' +
                     '<label class="layui-form-label">选择用户</label>' +
                     '<div class="layui-input-block">'
@@ -33,9 +33,9 @@ function choosePath() {
                 response.users.forEach(function (element, index) {
                     console.log(element.folders_size)
                     if (index === 0) {
-                        html += '<input type="radio" name="user" value="thep0y" title=\'<img src="' + element.logo + '" class="logo">' + element.username + '\' checked="">'
+                        html += '<input type="radio" data-wx-id="' + element.wx_id + '" name="user" value="thep0y" title=\'<img src="' + element.logo + '" class="logo">' + element.username + '\' checked="">'
                     } else {
-                        html += '<input type="radio" name="user" value="thep0y" title=\'<img src="' + element.logo + '" class="logo">' + element.username + '\'>'
+                        html += '<input type="radio" data-wx-id="' + element.wx_id + '" name="user" value="thep0y" title=\'<img src="' + element.logo + '" class="logo">' + element.username + '\'>'
                     }
                 })
 
@@ -48,14 +48,22 @@ function choosePath() {
                 for (var i in fisrtUserfoldersSize) {
                     // console.log(i, fisrtUserfoldersSize[i])
                     if (fisrtUserfoldersSize[i]) {
-                        html += '<input type="checkbox" name="' + i + '" title="' + folders[i] + ' (' + fisrtUserfoldersSize[i] + ' MB)"></input>'
+                        html += '<input type="checkbox" name="folders" value="' + i + '" title="' + folders[i] + ' (' + fisrtUserfoldersSize[i] + ' MB)"></input>'
                     }
                 }
                 html += '</div></div>'
 
+                html += '<div class="layui-form-item"><div class="layui-input-block">' + '<button class="layui-btn" lay-submit="" lay-filter="to-clean">开始清理</button></div></div>'
+
                 html += '</form>'
 
-                html += '<script>layui.form.render();</script>'
+                html += '<script>'
+
+                html += 'layui.form.render();'
+
+                html += '$("#clean").submit(function(a){a.preventDefault(),workdir=$("#wechat-files-folder").val(),checkedWxID=$(\'input:radio[name="user"]:checked\')[0].dataset.wxId,folders=new Array,$(\'input:checkbox[name="folders"]:checked\').each(function(a){folders[a]=$(this).val()}),$.ajax({type:"POST",url:url+"clean/",data:JSON.stringify({work_dir:workdir,wx_id:checkedWxID,folders:folders})}).done(function(a){console.log(a)})});'
+
+                html += '</script>'
 
                 funcs.html(html)
 
@@ -64,6 +72,31 @@ function choosePath() {
         });
     })
 }
+
+$('#clean').submit(function (event) {
+    event.preventDefault()
+
+    let workdir = $('#wechat-files-folder').val()
+    let checkedWxID = $('input:radio[name="user"]:checked')[0].dataset.wxId
+
+    let folders = new Array()
+    $('input:checkbox[name="folders"]:checked').each(function (i) {
+        folders[i] = $(this).val()
+    })
+
+    $.ajax({
+            type: "POST",
+            url: url + 'clean/',
+            data: JSON.stringify({
+                work_dir: workdir,
+                wx_id: checkedWxID,
+                folders: folders
+            })
+        })
+        .done(function (response) {
+            console.log(response)
+        })
+})
 
 layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'form', 'colorpicker'], function () {
     var laydate = layui.laydate //日期
