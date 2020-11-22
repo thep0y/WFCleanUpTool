@@ -4,8 +4,7 @@
 # @Email:  thepoy@163.com
 # @File:   main.py
 # @Created time:   2020-11-15 21:17:47
-# @Last Modified by:   thepoy
-# @Last Modified time: 2020-11-15 21:17:47
+import sys
 import logging
 import webview
 import uvicorn
@@ -26,7 +25,11 @@ def create_window():
     api = Api()
     webview.create_window("微信文件清理工具", "http://127.0.0.1:8001/", js_api=api, height=400, resizable=False)
 
-    webview.start(gui='qt', debug=True)
+    if sys.platform == 'linux':
+        webview.start(gui='qt', debug=True)
+    else:
+        # macOS 和 windows 采用默认gui引擎即可
+        webview.start(debug=True)
 
 
 if __name__ == '__main__':
