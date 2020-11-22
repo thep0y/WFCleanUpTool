@@ -24,16 +24,31 @@
         </form>
     </div>
     <div id="functions">
-        <!-- <form class="layui-form" action="">
-            <div class="layui-form-item">
+        <form class="layui-form" action="">
+            <!-- <div class="layui-form-item">
                 <label class="layui-form-label">选择用户</label>
                 <div class="layui-input-block">
                     <input type="radio" name="sex" value='thep0y' title='<img src="http://wx.qlogo.cn/mmhead/ver_1/Tlbh9e3OI12046tEibFXHRbxmwPicpfUQhz7p0Lau5MqM3EVxqyNraHkJINMNbVSbj0Tq1UibNH115JhdldkUIw1sB2VSVRMjeSdocgjTXlwBM/132"
                     class="logo">thep0y' checked="">
                     <input type="radio" name="sex" value="女" title="女">
                 </div>
+            </div> -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">待清理内容</label>
+                <div class="layui-input-block" id="clean-up-files">
+                    <input type="checkbox" name="msg" title="聊天记录 (99.9 MB)">
+                    <input type="checkbox" name="file" title="文件" checked="">
+                    <input type="checkbox" name="image" title="图片">
+                    <input type="checkbox" name="video" title="视频">
+                    <input type="checkbox" name="custom-emotion" title="用户表情">
+                    <input type="checkbox" name="fav" title="收藏">
+                    <input type="checkbox" name="cache" title="缓存">
+                    <input type="checkbox" name="temp" title="临时文件">
+                    <input type="checkbox" name="general" title="通用/其他">
+                    <input type="checkbox" name="temp-from-phone" title="来自手机的临时文件">
+                </div>
             </div>
-        </form> -->
+        </form>
     </div>
 </body>
 <script type="text/javascript" src="{{ url_for('static', path='/layui/layui.all.js') }}"></script>

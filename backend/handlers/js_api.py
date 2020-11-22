@@ -2,7 +2,7 @@ import os
 
 import webview
 
-from backend.handlers.file_handler import find_wx_username_and_logo
+from backend.handlers.file_handler import find_wx_username_and_logo, all_folders_size
 
 
 class Api:
@@ -21,6 +21,8 @@ class Api:
                     user['username'] = username
                 if logo:
                     user['logo'] = logo
+                user['wx_id'] = wx_id
+                user['folders_size'] = all_folders_size(path[0], wx_id)
                 if user:
                     users.append(user)
 
