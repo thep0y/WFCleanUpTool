@@ -30,7 +30,7 @@ python main.py
 ```
 
 
-当然，也可以下载release，直接运行。
+~~当然，也可以下载release，直接运行。~~
 
 ### 当前问题
 不知为何，在打包exe后，fastapi报导包的错误：
