@@ -31,3 +31,29 @@ python main.py
 
 
 当然，也可以下载release，直接运行。
+
+### 当前问题
+不知为何，在打包exe后，fastapi报导包的错误：
+```
+Traceback (most recent call last):
+  File "main.py", line 15, in <module>
+  File "c:\venvs\gui\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 493, in exec_module
+    exec(bytecode, module.__dict__)
+  File "backend\web.py", line 3, in <module>
+  File "c:\venvs\gui\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 493, in exec_module
+    exec(bytecode, module.__dict__)
+  File "fastapi\__init__.py", line 7, in <module>
+  File "c:\venvs\gui\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 493, in exec_module
+    exec(bytecode, module.__dict__)
+  File "fastapi\applications.py", line 3, in <module>
+  File "c:\venvs\gui\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 493, in exec_module
+    exec(bytecode, module.__dict__)
+  File "fastapi\routing.py", line 7, in <module>
+  File "c:\venvs\gui\lib\site-packages\PyInstaller\loader\pyimod03_importers.py", line 493, in exec_module
+    exec(bytecode, module.__dict__)
+  File "fastapi\params.py", line 4, in <module>
+  File "pydantic\__init__.py", line 2, in init pydantic.__init__
+ImportError: cannot import name dataclasses
+[10200] Failed to execute script main
+```
+未能找到解决之法。

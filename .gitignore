@@ -1,6 +1,3 @@
-backend/__pycache__/web.cpython-38.pyc
-backend/handlers/__pycache__/__init__.cpython-38.pyc
-backend/handlers/__pycache__/js_api.cpython-38.pyc
-backend/handlers/__pycache__/file_handler.cpython-38.pyc
-backend/__pycache__/settings.cpython-38.pyc
-backend/__pycache__/__init__.cpython-38.pyc
+__pycache__/
+*.pyc
+*/__pycache__
