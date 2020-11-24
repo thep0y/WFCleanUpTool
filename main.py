@@ -27,6 +27,7 @@ def create_window():
                           "http://127.0.0.1:8001/",
                           js_api=api,
                           height=400,
+                          width=820,
                           resizable=False)
 
     if sys.platform == 'linux':
